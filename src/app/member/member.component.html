@@ -1,0 +1,42 @@
+
+
+<form [formGroup]="memberForm" novalidate>
+
+
+  <div class="input-group input-group-sm mb-3">
+    <label class="input-group-text">BR Code</label>
+    <app-select-code codeValue="BR"
+                     [codeItems]="codeItems"
+                     FormControlName="brCodeControl"
+                     (currentValueChange)="dropdownBrValueChanged($event)"
+                     [ngClass]="{ 'is-invalid': (m.brCodeControl.value === '')}" required>
+    </app-select-code>
+    <div *ngIf="m.brCodeControl.invalid && (m.brCodeControl.dirty || m.brCodeControl.touched)" class="invalid-feedback">
+      <div *ngIf="m.brCodeControl.errors.required">
+        BR Code is required.
+      </div>
+    </div>
+  </div>
+
+
+  <div class="input-group input-group-sm mb-3">
+    <label class="input-group-text">MC Code</label>
+    <app-select-code codeValue="MC"
+                     [codeItems]="codeItems"
+                     FormControlName="McCodeControl"
+                     (currentValueChange)="dropdownMcValueChanged($event)"
+                     [ngClass]="{ 'is-invalid': (m.mcCodeControl.value === '')}" required>
+    </app-select-code>
+    <!--<div class="invalid-feedback" *ngIf="(m.brCodeControl.value === '') && m.brCodeControl.touched">
+      BR Code is required.
+    </div>-->
+    <div *ngIf="m.mcCodeControl.invalid && (m.mcCodeControl.dirty || m.mcCodeControl.touched)" class="invalid-feedback">
+      <div *ngIf="m.mcCodeControl.errors.required">
+        MC Code is required.
+      </div>
+    </div>
+  </div>
+  
+  
+</form>
+ 

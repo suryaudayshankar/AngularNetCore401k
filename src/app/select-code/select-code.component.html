@@ -1,0 +1,19 @@
+
+<!--<select class="form-select form-select-sm"
+        (change)="comboChangeEvent($event)">
+  <option selected value="">Choose...</option>
+  <ng-container *ngFor="let codeItem of codeItems$ |  filterCodesBy: codeValue | async  ; let i = index ">
+    <option value={{codeItem.codeValue}}>{{codeItem.codeValue}} - {{codeItem.codeDescription}}</option>
+  </ng-container>
+</select>-->
+
+
+
+<select class="form-select form-select-sm"
+        (change)="comboChangeEvent($event)">
+  <option selected value="">Choose...</option>
+  <ng-container *ngFor="let codeItem of codeItems |  filterCode: codeValue ; let i = index ">
+    <option value={{codeItem.codeValue}}>{{codeItem.codeValue}} - {{codeItem.codeDescription}}</option>
+  </ng-container>
+</select>
+

@@ -1,0 +1,59 @@
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+/* border spacing is used to specify the
+            width between border and adjacent cells */
+html,
+body {
+  height: 100%
+}
+.check-space {
+  margin-right: 20px;
+}
+#separateTable {
+  border-collapse: separate;
+  border-spacing: 2px;
+}
+
+#collapseTable {
+  border-collapse: collapse;
+  border-spacing: 10px;
+}
+
+#initialTable {
+  border-collapse: initial;
+}
+
+.table {
+  font-size: 12px;
+}
+
+.table tr, .table td {
+  height: 10px;
+  /*text-align: center*/
+}
+
+
+table thead {
+  font-size: 13px;
+  height: 13px;
+  text-align: center;
+  padding: 0;
+}
+
+  .table > tbody > tr > td,
+  .table > tbody > tr  ,
+  .table > tfoot > tr > td,
+  .table > tfoot > tr > ,
+  {
+  padding: 0;
+}
+/*.table > thead > tr > td,
+.table > thead > tr > th*/
+
+div.border {
+  min-height: 25px;
+  max-height: calc(70vh - 50px);
+}
+

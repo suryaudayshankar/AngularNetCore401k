@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --ssl --ssl-cert %APPDATA%\\ASP.NET\\https\\%npm_package_name%.pem --ssl-key %APPDATA%\\ASP.NET\\https\\%npm_package_name%.key",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "prestart": "node aspnetcore-https"
   },
   "private": true,
   "dependencies": {
@@ -18,8 +19,24 @@
     "@angular/platform-browser": "^14.1.0",
     "@angular/platform-browser-dynamic": "^14.1.0",
     "@angular/router": "^14.1.0",
+    "@popperjs/core": "^2.11.6",
+    "@syncfusion/ej2-angular-grids": "^20.3.58",
+    "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.2",
+    "execa": "^6.1.0",
+    "jest-editor-support": "*",
+    "jquery": "^3.6.1",
+    "loader-utils": "^3.2.1",
+    "nopt": "^7.0.0",
+    "npm": "^9.1.2",
+    "npm-package-arg": "^10.0.0",
+    "npm-run-path": "^5.1.0",
+    "npmlog": "^7.0.1",
+    "pkg-dir": "^7.0.0",
     "rxjs": "~7.5.0",
+    "semver": "^7.3.8",
     "tslib": "^2.3.0",
+    "validate-npm-package-name": "^5.0.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -27,6 +44,7 @@
     "@angular/cli": "~14.1.1",
     "@angular/compiler-cli": "^14.1.0",
     "@types/jasmine": "~4.0.0",
+    "eslint": "^8.45.0",
     "jasmine-core": "~4.2.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",

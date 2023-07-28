@@ -1,0 +1,11 @@
+
+
+<select class="form-select form-select-sm" id="inputGroupSelectWorkMonth" >
+  <option selected value="">Choose...</option>
+  <ng-container *ngFor="let workMonth of workMonths ;let i= index">
+    <option value={{workMonth.key}}>{{workMonth.display}}</option>
+  </ng-container>
+</select>
+
+
+

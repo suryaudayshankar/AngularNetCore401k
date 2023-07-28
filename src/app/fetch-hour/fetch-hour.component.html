@@ -1,0 +1,243 @@
+<!--<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">-->
+<!--<p *ngIf="!hourList"><em>Loading...</em></p>-->
+<div class="border border-info" height="calc(80vh)" className="flex-wrapper">
+
+
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item p-1">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Get Potential Hours by Report Id or by Employer/Work Month
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="card border-0 ">
+          <div class="card-body p-0 ">
+            <div class="row col-12">
+
+              <form class="has-validation" [formGroup]="myForm" (ngSubmit)="getHoursClick()" novalidate>
+                <div class="row">
+
+
+                  <div class="col-sm-6">
+                    <div class="card">
+                      <div class="card-body p-1">
+
+
+                        <div class="row g-2">
+                          <div class="col-6">
+                            <h6 class="card-title">Employer/Work Month</h6>
+                          </div>
+                          <div class="col-6">
+                            <button class="btn btn-primary btn-sm ms-2 float-sm-end" [disabled]="!m.companyId.valid || (m.workMonthControl.value === '')" type="submit">
+                              <i class="bi bi-download"></i> Get Hours
+                            </button>
+                          </div>
+                          <div></div>
+                        </div>
+
+
+
+
+                        <div class="row g-2">
+                          <div class="col-6">
+
+                            <div class="input-group input-group-sm mb-3">
+                              <label class="input-group-text">Work Month</label>
+
+                              <app-test-combo FormControlName="workMonthControl" (change)="comboChangeEvent($event)"
+                                              [ngClass]="{ 'is-invalid': (m.workMonthControl.value === '')}" required>
+                              </app-test-combo>
+
+                              <div class="invalid-feedback" *ngIf="(m.workMonthControl.value === '') && m.workMonthControl.touched">
+                                WorkMonth is required.
+                              </div>
+                            </div>
+
+                          </div><!--<col-6>-->
+                          <div class="col-6">
+
+                            <div class="input-group input-group-sm mb-3">
+                              <label class="input-group-text"> Company Id</label>
+                              <input type="text" formControlName="companyId"
+                                     class="form-control form-control-sm"
+                                     placeholder="Company Id..."
+                                     [ngClass]="{ 'is-invalid': m.companyId.touched && m.companyId.invalid }" required>
+                              <div class="invalid-feedback" *ngIf="m.companyId.touched && m.companyId.invalid">
+                                <div *ngIf="m.companyId.errors?.required">
+                                  Company Id Required
+                                </div>
+                                <div *ngIf="m.companyId.errors?.pattern">
+                                  Enter only numbers up, to 7 digits
+                                </div>
+                              </div>
+                            </div> <!--<input group>-->
+                          </div> <!--<col-6>-->
+
+                        </div> <!--<g-2>-->
+                        <!--<button class="btn btn-primary" [disabled]="!m.companyId.valid || (m.workMonthControl.value === '')" type="submit">
+                          <i class="bi bi-download"></i> Get Hours
+                        </button>-->
+
+                      </div> <!--<card body>-->
+                    </div> <!--<card>-->
+                  </div> <!--<col Left Form Section END>-->
+
+
+                  <div class="col-sm-4">
+                    <!--<col Right Form Section Start>-->
+                    <div class="card ">
+                      <div class="card-body p-1">
+
+
+                        <div class="row g-2">
+                          <div class="col-6">
+                            <h6 class="card-title">Report Id</h6>
+                          </div>
+                          <div class="col-6">
+                            <button class="btn btn-primary btn-sm ms-2 float-sm-end" [disabled]="!r.reportId.valid"
+                                    (click)="getHoursByReportIdClick()">
+                              <i class="bi bi-download"></i> Get Hours
+                            </button>
+                          </div>
+                          <div></div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                        <div class="input-group input-group-sm mb-3" formGroupName="reportIdGroup">
+                          <label class="input-group-text"> Report Id</label>
+                          <input type="text" formControlName="reportId"
+                                 class="form-control form-control-sm"
+                                 placeholder="Report Id..."
+                                 [ngClass]="{ 'is-invalid': r.reportId.touched && r.reportId.invalid }" required>
+                          <div class="invalid-feedback" *ngIf="r.reportId.touched && r.reportId.invalid">
+                            <div *ngIf="r.reportId.errors?.required">
+                              Report Id Required
+                            </div>
+                            <div *ngIf="r.reportId.errors?.pattern">
+                              Enter only numbers
+                            </div>
+                          </div>
+                        </div> <!--<input group>-->
+                        <!--<div>
+                          <button type="submit" class="btn btn-primary" [disabled]="!r.reportId.valid"
+                                  (click)="getHoursClick()">
+                            <i class="bi bi-download"></i> Get Hours
+                          </button>
+                        </div>-->
+                      </div>
+                    </div>
+                  </div> <!--<col Right Form Section END>-->
+
+                </div>
+              </form>
+            </div> <!--<row>-->
+          </div><!--<card body>-->
+        </div> <!--<card>-->
+      </div> <!--End accordion-body-->
+    </div>
+  </div>
+</div>
+
+
+<div class="border border-info" style="overflow-y: scroll;">
+  <table class=" table table-bordered  table-striped table-sm  " id="separateTable" *ngIf="hourList">
+    <!--class= "sticky-sm-top"-->
+    <thead class="table-info sticky-sm-top" style=" height: calc(70% - 8px) ">
+    <tr>
+
+      <th>
+        <div class="d-grid gap-2 d-md-block">
+
+          <div class="btn-group float-sm-start" role="group" aria-label="Basic radio toggle button group">
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+            <label class="btn btn-outline-info btn-sm" (click)="checkAllCheckBox(true)" for="btnradio1"
+                   data-bs-toggle="tooltip" data-bs-placement="bottom" title="Select All Records">
+              <i class="bi bi-check-square"></i>
+            </label>
+
+
+            <input type="radio" class="btn-check" [disabled]="disableAppendButton" name="btnradio" id="btnradio2" autocomplete="off" checked>
+            <label class="btn btn-outline-info btn-sm" (click)="checkAllCheckBox(false)" for="btnradio2"
+                   data-bs-toggle="tooltip" data-bs-placement="bottom" title="UnSelect All Records">
+              <i class="bi bi-square"></i>
+            </label>
+          </div>
+
+
+          <button type="submit" [disabled]="disableAppendButton" class="btn btn-primary btn-sm ms-2">
+            <i class="bi bi-database-add"></i> Append Hours
+          </button>
+        </div>
+      </th>
+
+
+
+      <!--<th>Member</th>-->
+      <th>SSN</th>
+      <th>Hours</th>
+      <th>401-K</th>
+      <th>Flex</th>
+      <th>Local</th>
+      <th>WorkDate</th>
+      <th>401-K Rate</th>
+      <th>Flex Rate</th>
+      <th>HoursId</th>
+    </tr>
+    </thead>
+    <tbody style="height: 10px !important; overflow: scroll;">
+    <tr *ngFor="let hr of hourList; let i=index">
+      <td>
+        <input type="checkbox" class="check-space" value="{{hr.mhrsId}}"
+               [(ngModel)]="hourList[i].isChecked" (change)="onCheckboxChange($event)">{{ hr.memberName | uppercase }}
+      </td>
+
+      <td class="text-center">{{ hr.ssn  | SSN: 'U':true   }}</td>
+      <td class="text-sm-end">{{ hr.kHours | currency:'USD':'' }}</td>
+      <td class="text-sm-end">{{ hr.kAmount | currency:'USD':'$' }}</td>
+      <td class="text-sm-end">{{ hr.flex  | currency:'USD':'$'}}</td>
+      <td class="text-center">{{ hr.fullLocal }}</td>
+      <td class="text-center">{{ hr.workDate | date:'MM/YYYY' }}</td>
+      <td class="text-sm-end">{{ hr.kRate | currency:'USD':'$'}}</td>
+      <td class="text-sm-end">{{ hr.flexRate |  currency:'USD':'$'}}</td>
+      <td>{{ hr.mhrsId}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <th scope="row">Total 401 and Flex</th>
+      <td></td>
+      <td></td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+  <!--<p *ngFor="let x of result">
+    {{x.mhrsId}}
+
+  </p>-->
+
+

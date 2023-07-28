@@ -1,0 +1,35 @@
+<p>Report Hours</p>
+
+
+<ejs-grid [dataSource]='data' allowPaging='true' gridLines='Both' height=365 width=980 [pageSettings]='initialPage'>
+  <e-columns>
+    <e-column field='Select' type='checkbox' width=20></e-column>
+    <e-column field='OrderID' headerText='Order ID' textAlign='Right' width=20></e-column>
+    <e-column field='CustomerID' headerText='Customer ID' width='30'></e-column>
+    <e-column field='Freight' headerText='Freight' textAlign='Right' format=C2 width='50'></e-column>
+    <e-column field='OrderDate' headerText='Order Date' textAlign='Right' format='yMd' width='30'></e-column>
+  </e-columns>
+</ejs-grid>
+
+
+
+<p *ngIf="!forecasts"><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>
+
+<table *ngIf="forecasts">
+  <thead>
+  <tr>
+    <th>Date</th>
+    <th>Temp. (C)</th>
+    <th>Temp. (F)</th>
+    <th>Summary</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let forecast of forecasts">
+    <td>{{ forecast.date }}</td>
+    <td>{{ forecast.temperatureC }}</td>
+    <td>{{ forecast.temperatureF }}</td>
+    <td>{{ forecast.summary }}</td>
+  </tr>
+  </tbody>
+</table>
