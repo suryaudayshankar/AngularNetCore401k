@@ -18,6 +18,7 @@ import { HoursComponent } from './hours/hours.component';
 import { MemberComponent } from './member/member.component';
 import { HomeComponent } from './home/home.component';
 import { FetchHourComponent } from './fetch-hour/fetch-hour.component';
+import { SearchComponent } from './search/search.component';
 
 //import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 //import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
@@ -43,7 +44,13 @@ const appRoutes: Routes = [
   {
   path: 'fetch-hour',
   component: FetchHourComponent
-  } 
+  },
+
+  {
+    path: 'search',
+    component: SearchComponent
+  }
+
 
 
 
