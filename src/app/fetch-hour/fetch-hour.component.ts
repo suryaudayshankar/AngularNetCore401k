@@ -120,6 +120,7 @@ export class FetchHourComponent implements OnInit  {
         this.disableAppendButton = false;
       } else {
         this.disableAppendButton = true;
+
       };
     }
 
