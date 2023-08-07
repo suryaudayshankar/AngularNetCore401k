@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { SearchService } from "../services/search.service";
 
 @Component({
   selector: 'app-search',
@@ -17,8 +18,10 @@ export class SearchComponent {
   states: string[] = [];
   counties: string[] = [];
 
+  private readonly searchService: SearchService;
+
   constructor() {
-    this.form.get('country').valueChanges.subscribe(country => {
+    /*this.form.get('country').valueChanges.subscribe(country => {
       if (country === 'USA') {
         this.states = ['State 1', 'State 2']; // Replace with actual states
       } else if (country === 'Canada') {
@@ -39,6 +42,19 @@ export class SearchComponent {
         this.counties = [];
       }
       this.form.get('county').reset();
+    });*/
+  }
+
+  getStates(country: string) {
+    this.searchService.getStates(country).subscribe(states => {
+      this.states = states;
     });
   }
+
+  getCounties(state: string) {
+    this.searchService.getCounties(state).subscribe(counties => {
+      this.counties = counties;
+    });
+  }
+
 }
