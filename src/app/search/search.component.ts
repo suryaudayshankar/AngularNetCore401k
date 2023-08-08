@@ -5,22 +5,24 @@ import { SearchService } from "../services/search.service";
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.css'],
+  providers: [SearchService]
 })
 export class SearchComponent {
   form = new FormGroup({
     country: new FormControl(''),
     state: new FormControl(''),
     county: new FormControl(''),
+    city: new FormControl(''),
+    postalCode: new FormControl(''),    
+    local: new FormControl('') 
   });
 
   countries = ['USA', 'Canada'];
   states: string[] = [];
   counties: string[] = [];
 
-  private readonly searchService: SearchService;
-
-  constructor() {
+  constructor(private searchService: SearchService) {
     /*this.form.get('country').valueChanges.subscribe(country => {
       if (country === 'USA') {
         this.states = ['State 1', 'State 2']; // Replace with actual states
@@ -56,5 +58,10 @@ export class SearchComponent {
       this.counties = counties;
     });
   }
+
+  resetForm() {
+    this.form.reset();
+  }
+
 
 }
