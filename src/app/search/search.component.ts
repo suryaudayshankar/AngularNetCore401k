@@ -48,12 +48,14 @@ export class SearchComponent {
   }
 
   getStates(country: string) {
+    this.states = [];
     this.searchService.getStates(country).subscribe(states => {
       this.states = states;
     });
   }
 
   getCounties(state: string) {
+    this.counties = [];
     this.searchService.getCounties(state).subscribe(counties => {
       this.counties = counties;
     });
@@ -61,6 +63,8 @@ export class SearchComponent {
 
   resetForm() {
     this.form.reset();
+    this.states = [];
+    this.counties = [];
   }
 
 
