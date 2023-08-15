@@ -21,30 +21,11 @@ export class SearchComponent {
   countries = ['USA', 'Canada'];
   states: string[] = [];
   counties: string[] = [];
+  results: string[] = [];
+  showResults = false;
 
   constructor(private searchService: SearchService) {
-    /*this.form.get('country').valueChanges.subscribe(country => {
-      if (country === 'USA') {
-        this.states = ['State 1', 'State 2']; // Replace with actual states
-      } else if (country === 'Canada') {
-        this.states = ['Province 1', 'Province 2']; // Replace with actual provinces
-      } else {
-        this.states = [];
-      }
-      this.form.get('state').reset();
-      this.counties = [];
-    });
-
-    this.form.get('state').valueChanges.subscribe(state => {
-      if (state === 'State 1') {
-        this.counties = ['County 1', 'County 2']; // Replace with actual counties
-      } else if (state === 'State 2') {
-        this.counties = ['County 3', 'County 4']; // Replace with actual counties
-      } else {
-        this.counties = [];
-      }
-      this.form.get('county').reset();
-    });*/
+    
   }
 
   getStates(country: string) {
@@ -59,6 +40,23 @@ export class SearchComponent {
     this.searchService.getCounties(state).subscribe(counties => {
       this.counties = counties;
     });
+  }
+
+  getResults() {
+    const criteria = {
+      country: this.form.controls['country'].value,
+      state: this.form.controls['state'].value,
+      county: this.form.controls['county'].value,
+      city: this.form.controls['city'].value,
+      postalCode: this.form.controls['postalCode'].value,
+      local: this.form.controls['local'].value
+    };
+
+    this.searchService.getResults(criteria).subscribe(data => {
+      this.results = data;
+      this.showResults = true;
+    });
+
   }
 
   resetForm() {

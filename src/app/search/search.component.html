@@ -77,13 +77,23 @@
               </div>
 
               <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-primary me-2">Search</button>
+                <button type="button" class="btn btn-primary me-2" (click)="getResults()">Search</button>
                 <button type="button" class="btn btn-primary" (click)="resetForm()">Reset</button>
               </div>
 
             </form>
           </div>
         </div>
+        
+        <div *ngIf="showResults" class="card mt-3">
+          <div class="card-body">
+            <h5 class="card-title">Search Results</h5>
+            <ul>
+              <li *ngFor="let result of results">{{ result }}</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

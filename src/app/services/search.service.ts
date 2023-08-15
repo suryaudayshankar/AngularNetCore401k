@@ -6,16 +6,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SearchService {
-  private baseUrl = 'http://localhost:5095/api';
+  private baseUrl = 'http://localhost:5095/api/search';
 
   constructor(private http: HttpClient) { }
 
 
   getStates(country: string): Observable<string[]> {
-    return this.http.get<string[]>(`${this.baseUrl}/states?country=${country}`);
+    return this.http.get<string[]>(`${this.baseUrl}/states/${country}`);
   }
 
   getCounties(state: string): Observable<string[]> {
-    return this.http.get<string[]>(`${this.baseUrl}/counties?state=${state}`);
+    return this.http.get<string[]>(`${this.baseUrl}/counties/${state}`);
+  }
+
+  getResults(criteria: any): Observable<any> {
+    return this.http.post<any>(this.baseUrl, criteria);
   }
 }
