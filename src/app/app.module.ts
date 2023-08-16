@@ -23,6 +23,7 @@ import { FilterCodePipe } from './pipes/filter-code.pipe';
 import { DatePipe } from '@angular/common';
 import { SsnPipe } from './pipes/ssn.pipe';
 import { SearchComponent } from './search/search.component';
+import { InfoComponent } from './info/info.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { SearchComponent } from './search/search.component';
     GroupByPipe,
     FilterCodePipe,
     SsnPipe,
-    SearchComponent
+    SearchComponent,
+    InfoComponent
     
   ],
   imports: [

@@ -84,15 +84,26 @@
             </form>
           </div>
         </div>
-        
+
         <div *ngIf="showResults" class="card mt-3">
           <div class="card-body">
-            <h5 class="card-title">Search Results</h5>
+            <h5 class="card-title">Results ({{results.length}})</h5>
             <ul>
               <li *ngFor="let result of results">{{ result }}</li>
             </ul>
           </div>
         </div>
+
+       <!-- <div *ngIf="showResults" class="card mt-3">
+          <div class="card-body">
+            <h5 class="card-title">Results ({{results.length}})</h5>
+            <div class="results-box">
+              <div *ngFor="let result of results" class="result-item">
+                <a [routerLink]="['/info', result]">{{ result }}</a>
+              </div>
+            </div>
+          </div>
+        </div>-->
 
       </div>
     </div>

@@ -1,0 +1,25 @@
+.results-box {
+  max-height: 300px; 
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.result-item {
+  padding: 5px 0;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+  .result-item:last-child {
+    border-bottom: none;
+  }
+
+  .result-item a {
+    text-decoration: none;
+    color: #007bff;
+  }
+
+    .result-item a:hover {
+      text-decoration: underline;
+    }

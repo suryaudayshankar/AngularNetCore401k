@@ -19,6 +19,7 @@ import { MemberComponent } from './member/member.component';
 import { HomeComponent } from './home/home.component';
 import { FetchHourComponent } from './fetch-hour/fetch-hour.component';
 import { SearchComponent } from './search/search.component';
+import { InfoComponent } from './info/info.component';
 
 //import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 //import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
@@ -49,6 +50,11 @@ const appRoutes: Routes = [
   {
     path: 'search',
     component: SearchComponent
+  },
+
+  {
+    path: 'info/:id',
+    component: InfoComponent
   }
 
 
