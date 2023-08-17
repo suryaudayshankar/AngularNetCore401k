@@ -1,1 +1,31 @@
-<p>info works!</p>
+<div class="container mt-5">
+  <h2>Details</h2>
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="mb-3">
+        <label class="form-label">Label 1:</label>
+        <span class="form-control">{{ data?.field1 || 'Placeholder' }}</span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Label 2:</label>
+        <span class="form-control">{{ data?.field2 || 'Placeholder' }}</span>
+      </div>
+      <!-- Add more labels -->
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <h4>Local Jurisdictions</h4>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of list1">{{ item || 'Placeholder' }}</li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h4>Crafts</h4>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of list2">{{ item || 'Placeholder' }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
