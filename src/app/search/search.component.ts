@@ -43,7 +43,33 @@ export class SearchComponent {
   }
 
   getResults() {
-    const criteria = {
+/*    const criteria = {
+      country: this.form.controls['country'].value,
+      state: this.form.controls['state'].value,
+      county: this.form.controls['county'].value,
+      city: this.form.controls['city'].value,
+      postalCode: this.form.controls['postalCode'].value,
+      local: this.form.controls['local'].value
+    };
+
+    this.searchService.getResults(criteria).subscribe(data => {
+      this.results = data;
+      this.showResults = true;
+    });
+*/
+
+    class Criteria {
+      country: string;
+      state: string;
+      county: string;
+      city: string;
+      postalCode: string;
+      local: string;
+    }
+
+
+
+    var criteria: Criteria = {
       country: this.form.controls['country'].value,
       state: this.form.controls['state'].value,
       county: this.form.controls['county'].value,
